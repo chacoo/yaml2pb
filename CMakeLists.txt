@@ -36,6 +36,7 @@ target_include_directories(yaml2pb_test PRIVATE
 )
 target_link_libraries(yaml2pb_test libyaml2pb libprotobuf yaml-cpp gmock_main)
 
+enable_testing()
 add_test(NAME yaml2pb_test
     COMMAND $<TARGET_FILE:yaml2pb_test>
 )
