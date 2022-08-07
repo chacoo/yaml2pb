@@ -59,6 +59,7 @@ TEST(yaml2pb, sample)
     yaml2pb::yaml2pb(sample, test_yaml);
     EXPECT_TRUE(sample.name() == "recorder_sample");
     EXPECT_EQ(sample.sources_size(), 1);
+    EXPECT_TRUE(sample.sources()[0].name() == "default_source");
     EXPECT_EQ(sample.processors_size(), 3);
     EXPECT_EQ(sample.drains_size(), 3);
 }

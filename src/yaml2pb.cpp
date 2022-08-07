@@ -1,5 +1,3 @@
-#include <_types/_uint32_t.h>
-#include <_types/_uint64_t.h>
 #include <exception>
 #include <sstream>
 #include <string>

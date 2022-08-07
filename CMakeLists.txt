@@ -5,7 +5,7 @@ project(yaml2pb
     LANGUAGES C CXX
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_EXPORT_COMPILECOMMANDS ON)
 
 include(FetchContent)
@@ -35,3 +35,8 @@ target_include_directories(yaml2pb_test PRIVATE
     ${protobuf_SOURCE_DIR}/third_party/googletest/googletest/include
 )
 target_link_libraries(yaml2pb_test libyaml2pb libprotobuf yaml-cpp gmock_main)
+
+enable_testing()
+add_test(NAME yaml2pb_test
+    COMMAND $<TARGET_FILE:yaml2pb_test>
+)
