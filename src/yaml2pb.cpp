@@ -234,7 +234,28 @@ namespace yaml2pb
             const google::protobuf::FieldDescriptor *field = *it;
 
             const std::string &name = (field->is_extension()) ? field->full_name() : field->name();
-            if (field->is_repeated())
+            if (field->is_map())
+            {
+                size_t count = ref->FieldSize(message, field);
+                if (!count)
+                    continue;
+
+                YAML::Node map_value;
+                for (size_t j = 0; j < count; j++)
+                {
+                    YAML::Node item;
+                    const google::protobuf::Message &mf = ref->GetRepeatedMessage(message, field, j);
+                    const google::protobuf::FieldDescriptor *map_key_field = mf.map_key();
+                    if (map_key_field->type() != google::protobuf::FieldDescriptor::TYPE_STRING)
+                        throw exception(field, "Invalid key type");
+                    field2yaml(item, mf, mf.map_value(), 0);
+                    std::string scratch;
+                    const std::string &map_name = mf->GetReflection()->GetStringReference(mf, map_key_field, &scratch);
+                    map_value[map_name] = item;
+                }
+                node[name] = map_value;
+            }
+            else if (field->is_repeated())
             {
                 size_t count = ref->FieldSize(message, field);
                 if (!count)

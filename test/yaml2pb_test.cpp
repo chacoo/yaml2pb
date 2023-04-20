@@ -77,6 +77,7 @@ TEST(pb2yaml, sample)
 
     Source *source = sample.add_sources();
     source->set_name("default_source");
+    source->mutable_metadata()->mutable_info()->insert(std::make_pair("my_key", "my_value"));
     source->add_processors("audio_mixer_for_wav");
     source->add_processors("audio_mixer_for_mp4");
     source->add_processors("video_mixer_for_mp4");
