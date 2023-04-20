@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "google/protobuf/message.h"
+#include "google/protobuf/reflection.h"
 #include "google/protobuf/descriptor.h"
 #include "yaml-cpp/yaml.h"
 
@@ -103,7 +104,7 @@ namespace yaml2pb
                 }
             }
             if (!ev)
-                throw exception(field, "Enum value not found");
+                throw exception(field, "Enum value not found:" + node.as<std::string>());
             _SET_OR_ADD(SetEnum, AddEnum, ev);
             break;
         }
@@ -128,9 +129,23 @@ namespace yaml2pb
             if (!field)
                 field = ref->FindKnownExtensionByName(name);
             if (!field)
-                throw exception("unknown field " + name);
+                throw exception("unknown field '" + name + "'");
 
-            if (field->is_repeated())
+            if (field->is_map())
+            {
+                if (!value.IsMap())
+                    throw exception(field, "invalid map");
+
+                auto mf = ref->GetMutableRepeatedFieldRef<google::protobuf::Message>(&message, field);
+                for (YAML::const_iterator it_pair = value.begin(); it_pair != value.end(); it_pair++)
+                {
+                    std::unique_ptr<google::protobuf::Message> entry(google::protobuf::MessageFactory::generated_factory()->GetPrototype(field->message_type())->New(message.GetArena()));
+                    yaml2field(*entry, field->message_type()->field(0), it_pair->first);
+                    yaml2field(*entry, field->message_type()->field(1), it_pair->second);
+                    mf.Add(*entry);
+                }
+            }
+            else if (field->is_repeated())
             {
                 if (!value.IsSequence())
                     throw exception(field, "invalid array");
