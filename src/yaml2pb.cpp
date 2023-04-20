@@ -245,12 +245,13 @@ namespace yaml2pb
                 {
                     YAML::Node item;
                     const google::protobuf::Message &mf = ref->GetRepeatedMessage(message, field, j);
-                    const google::protobuf::FieldDescriptor *map_key_field = mf.map_key();
+                    const google::protobuf::Descriptor *df = mf.GetDescriptor();
+                    const google::protobuf::FieldDescriptor *map_key_field = df->map_key();
                     if (map_key_field->type() != google::protobuf::FieldDescriptor::TYPE_STRING)
                         throw exception(field, "Invalid key type");
-                    field2yaml(item, mf, mf.map_value(), 0);
+                    field2yaml(item, mf, df->map_value(), 0);
                     std::string scratch;
-                    const std::string &map_name = mf->GetReflection()->GetStringReference(mf, map_key_field, &scratch);
+                    const std::string &map_name = mf.GetReflection()->GetStringReference(mf, map_key_field, &scratch);
                     map_value[map_name] = item;
                 }
                 node[name] = map_value;
