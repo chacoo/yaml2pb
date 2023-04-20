@@ -20,6 +20,30 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
+PROTOBUF_CONSTEXPR MetaData_InfoEntry_DoNotUse::MetaData_InfoEntry_DoNotUse(
+    ::_pbi::ConstantInitialized) {}
+struct MetaData_InfoEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MetaData_InfoEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MetaData_InfoEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    MetaData_InfoEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetaData_InfoEntry_DoNotUseDefaultTypeInternal _MetaData_InfoEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR MetaData::MetaData(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.info_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct MetaDataDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MetaDataDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MetaDataDefaultTypeInternal() {}
+  union {
+    MetaData _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetaDataDefaultTypeInternal _MetaData_default_instance_;
 PROTOBUF_CONSTEXPR Source::Source(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.processors_)*/{}
@@ -89,6 +113,7 @@ PROTOBUF_CONSTEXPR Sample::Sample(
   , /*decltype(_impl_.processors_)*/{}
   , /*decltype(_impl_.drains_)*/{}
   , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.metadata_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct SampleDefaultTypeInternal {
   PROTOBUF_CONSTEXPR SampleDefaultTypeInternal()
@@ -99,11 +124,28 @@ struct SampleDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SampleDefaultTypeInternal _Sample_default_instance_;
-static ::_pb::Metadata file_level_metadata_sample_2eproto[5];
+static ::_pb::Metadata file_level_metadata_sample_2eproto[7];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_sample_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_sample_2eproto = nullptr;
 
 const uint32_t TableStruct_sample_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  PROTOBUF_FIELD_OFFSET(::MetaData_InfoEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::MetaData_InfoEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::MetaData_InfoEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::MetaData_InfoEntry_DoNotUse, value_),
+  0,
+  1,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::MetaData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::MetaData, _impl_.info_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Source, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -150,19 +192,24 @@ const uint32_t TableStruct_sample_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Sample, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::Sample, _impl_.metadata_),
   PROTOBUF_FIELD_OFFSET(::Sample, _impl_.sources_),
   PROTOBUF_FIELD_OFFSET(::Sample, _impl_.processors_),
   PROTOBUF_FIELD_OFFSET(::Sample, _impl_.drains_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::Source)},
-  { 8, -1, -1, sizeof(::Module)},
-  { 21, -1, -1, sizeof(::Processor)},
-  { 30, -1, -1, sizeof(::Drain)},
-  { 39, -1, -1, sizeof(::Sample)},
+  { 0, 8, -1, sizeof(::MetaData_InfoEntry_DoNotUse)},
+  { 10, -1, -1, sizeof(::MetaData)},
+  { 17, -1, -1, sizeof(::Source)},
+  { 25, -1, -1, sizeof(::Module)},
+  { 38, -1, -1, sizeof(::Processor)},
+  { 47, -1, -1, sizeof(::Drain)},
+  { 56, -1, -1, sizeof(::Sample)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
+  &::_MetaData_InfoEntry_DoNotUse_default_instance_._instance,
+  &::_MetaData_default_instance_._instance,
   &::_Source_default_instance_._instance,
   &::_Module_default_instance_._instance,
   &::_Processor_default_instance_._instance,
@@ -171,32 +218,35 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_sample_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014sample.proto\"*\n\006Source\022\014\n\004name\030\001 \001(\t\022\022"
-  "\n\nprocessors\030\002 \003(\t\"\261\002\n\006Module\022 \n\004type\030\001 "
-  "\001(\0162\022.Module.ModuleType\022\r\n\005width\030\002 \001(\005\022\016"
-  "\n\006height\030\003 \001(\005\022\023\n\013sample_rate\030\004 \001(\005\022\023\n\013c"
-  "hannel_num\030\005 \001(\005\022\017\n\007bitrate\030\006 \001(\005\022\032\n\022key"
-  "_frame_interval\030\007 \001(\005\"\216\001\n\nModuleType\022\013\n\007"
-  "unknown\020\000\022\n\n\006scaler\020\001\022\r\n\tresampler\020\002\022\007\n\003"
-  "vp9\020\n\022\010\n\004h264\020\013\022\010\n\004h265\020\014\022\014\n\010h264_svc\020\r\022"
-  "\010\n\004pcma\020\024\022\010\n\004pcmu\020\025\022\007\n\003pcm\020\026\022\007\n\003aac\020\027\022\007\n"
-  "\003mp3\020\030\"\237\001\n\tProcessor\022\014\n\004name\030\001 \001(\t\022)\n\004ty"
-  "pe\030\002 \001(\0162\033.Processor.ProcessMediaType\022\030\n"
-  "\007modules\030\003 \003(\0132\007.Module\"\?\n\020ProcessMediaT"
-  "ype\022\013\n\007unknown\020\000\022\t\n\005audio\020\001\022\t\n\005video\020\002\022\010"
-  "\n\004data\020\003\"u\n\005Drain\022\014\n\004name\030\001 \001(\t\022\036\n\004type\030"
-  "\002 \001(\0162\020.Drain.DrainType\022\022\n\nprocessors\030\003 "
-  "\003(\t\"*\n\tDrainType\022\013\n\007unknown\020\000\022\007\n\003mp4\020\001\022\007"
-  "\n\003wav\020\002\"h\n\006Sample\022\014\n\004name\030\001 \001(\t\022\030\n\007sourc"
-  "es\030\n \003(\0132\007.Source\022\036\n\nprocessors\030\013 \003(\0132\n."
-  "Processor\022\026\n\006drains\030\014 \003(\0132\006.Drainb\006proto"
-  "3"
+  "\n\014sample.proto\"Z\n\010MetaData\022!\n\004info\030\001 \003(\013"
+  "2\023.MetaData.InfoEntry\032+\n\tInfoEntry\022\013\n\003ke"
+  "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"*\n\006Source\022\014\n\004"
+  "name\030\001 \001(\t\022\022\n\nprocessors\030\002 \003(\t\"\261\002\n\006Modul"
+  "e\022 \n\004type\030\001 \001(\0162\022.Module.ModuleType\022\r\n\005w"
+  "idth\030\002 \001(\005\022\016\n\006height\030\003 \001(\005\022\023\n\013sample_rat"
+  "e\030\004 \001(\005\022\023\n\013channel_num\030\005 \001(\005\022\017\n\007bitrate\030"
+  "\006 \001(\005\022\032\n\022key_frame_interval\030\007 \001(\005\"\216\001\n\nMo"
+  "duleType\022\013\n\007unknown\020\000\022\n\n\006scaler\020\001\022\r\n\tres"
+  "ampler\020\002\022\007\n\003vp9\020\n\022\010\n\004h264\020\013\022\010\n\004h265\020\014\022\014\n"
+  "\010h264_svc\020\r\022\010\n\004pcma\020\024\022\010\n\004pcmu\020\025\022\007\n\003pcm\020\026"
+  "\022\007\n\003aac\020\027\022\007\n\003mp3\020\030\"\237\001\n\tProcessor\022\014\n\004name"
+  "\030\001 \001(\t\022)\n\004type\030\002 \001(\0162\033.Processor.Process"
+  "MediaType\022\030\n\007modules\030\003 \003(\0132\007.Module\"\?\n\020P"
+  "rocessMediaType\022\013\n\007unknown\020\000\022\t\n\005audio\020\001\022"
+  "\t\n\005video\020\002\022\010\n\004data\020\003\"u\n\005Drain\022\014\n\004name\030\001 "
+  "\001(\t\022\036\n\004type\030\002 \001(\0162\020.Drain.DrainType\022\022\n\np"
+  "rocessors\030\003 \003(\t\"*\n\tDrainType\022\013\n\007unknown\020"
+  "\000\022\007\n\003mp4\020\001\022\007\n\003wav\020\002\"\205\001\n\006Sample\022\014\n\004name\030\001"
+  " \001(\t\022\033\n\010metadata\030\002 \001(\0132\t.MetaData\022\030\n\007sou"
+  "rces\030\n \003(\0132\007.Source\022\036\n\nprocessors\030\013 \003(\0132"
+  "\n.Processor\022\026\n\006drains\030\014 \003(\0132\006.Drainb\006pro"
+  "to3"
   ;
 static ::_pbi::once_flag descriptor_table_sample_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_sample_2eproto = {
-    false, false, 761, descriptor_table_protodef_sample_2eproto,
+    false, false, 883, descriptor_table_protodef_sample_2eproto,
     "sample.proto",
-    &descriptor_table_sample_2eproto_once, nullptr, 0, 5,
+    &descriptor_table_sample_2eproto_once, nullptr, 0, 7,
     schemas, file_default_instances, TableStruct_sample_2eproto::offsets,
     file_level_metadata_sample_2eproto, file_level_enum_descriptors_sample_2eproto,
     file_level_service_descriptors_sample_2eproto,
@@ -296,6 +346,239 @@ constexpr Drain_DrainType Drain::DrainType_MIN;
 constexpr Drain_DrainType Drain::DrainType_MAX;
 constexpr int Drain::DrainType_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+// ===================================================================
+
+MetaData_InfoEntry_DoNotUse::MetaData_InfoEntry_DoNotUse() {}
+MetaData_InfoEntry_DoNotUse::MetaData_InfoEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void MetaData_InfoEntry_DoNotUse::MergeFrom(const MetaData_InfoEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata MetaData_InfoEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
+      file_level_metadata_sample_2eproto[0]);
+}
+
+// ===================================================================
+
+class MetaData::_Internal {
+ public:
+};
+
+MetaData::MetaData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  if (arena != nullptr && !is_message_owned) {
+    arena->OwnCustomDestructor(this, &MetaData::ArenaDtor);
+  }
+  // @@protoc_insertion_point(arena_constructor:MetaData)
+}
+MetaData::MetaData(const MetaData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  MetaData* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.info_)*/{}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.info_.MergeFrom(from._impl_.info_);
+  // @@protoc_insertion_point(copy_constructor:MetaData)
+}
+
+inline void MetaData::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      /*decltype(_impl_.info_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+MetaData::~MetaData() {
+  // @@protoc_insertion_point(destructor:MetaData)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    ArenaDtor(this);
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MetaData::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.info_.Destruct();
+  _impl_.info_.~MapField();
+}
+
+void MetaData::ArenaDtor(void* object) {
+  MetaData* _this = reinterpret_cast< MetaData* >(object);
+  _this->_impl_.info_.Destruct();
+}
+void MetaData::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void MetaData::Clear() {
+// @@protoc_insertion_point(message_clear_start:MetaData)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.info_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MetaData::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // map<string, string> info = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&_impl_.info_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MetaData::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:MetaData)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // map<string, string> info = 1;
+  if (!this->_internal_info().empty()) {
+    using MapType = ::_pb::Map<std::string, std::string>;
+    using WireHelper = MetaData_InfoEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_info();
+    auto check_utf8 = [](const MapType::value_type& entry) {
+      (void)entry;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.first.data(), static_cast<int>(entry.first.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "MetaData.InfoEntry.key");
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+        entry.second.data(), static_cast<int>(entry.second.length()),
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+        "MetaData.InfoEntry.value");
+    };
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterPtr<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(1, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(1, entry.first, entry.second, target, stream);
+        check_utf8(entry);
+      }
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:MetaData)
+  return target;
+}
+
+size_t MetaData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:MetaData)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // map<string, string> info = 1;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_info_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
+      it = this->_internal_info().begin();
+      it != this->_internal_info().end(); ++it) {
+    total_size += MetaData_InfoEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MetaData::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    MetaData::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MetaData::GetClassData() const { return &_class_data_; }
+
+
+void MetaData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<MetaData*>(&to_msg);
+  auto& from = static_cast<const MetaData&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:MetaData)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.info_.MergeFrom(from._impl_.info_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MetaData::CopyFrom(const MetaData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:MetaData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MetaData::IsInitialized() const {
+  return true;
+}
+
+void MetaData::InternalSwap(MetaData* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.info_.InternalSwap(&other->_impl_.info_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MetaData::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
+      file_level_metadata_sample_2eproto[1]);
+}
 
 // ===================================================================
 
@@ -536,7 +819,7 @@ void Source::InternalSwap(Source* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Source::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
-      file_level_metadata_sample_2eproto[0]);
+      file_level_metadata_sample_2eproto[2]);
 }
 
 // ===================================================================
@@ -870,7 +1153,7 @@ void Module::InternalSwap(Module* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Module::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
-      file_level_metadata_sample_2eproto[1]);
+      file_level_metadata_sample_2eproto[3]);
 }
 
 // ===================================================================
@@ -1137,7 +1420,7 @@ void Processor::InternalSwap(Processor* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Processor::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
-      file_level_metadata_sample_2eproto[2]);
+      file_level_metadata_sample_2eproto[4]);
 }
 
 // ===================================================================
@@ -1409,15 +1692,20 @@ void Drain::InternalSwap(Drain* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Drain::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
-      file_level_metadata_sample_2eproto[3]);
+      file_level_metadata_sample_2eproto[5]);
 }
 
 // ===================================================================
 
 class Sample::_Internal {
  public:
+  static const ::MetaData& metadata(const Sample* msg);
 };
 
+const ::MetaData&
+Sample::_Internal::metadata(const Sample* msg) {
+  return *msg->_impl_.metadata_;
+}
 Sample::Sample(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -1432,6 +1720,7 @@ Sample::Sample(const Sample& from)
     , decltype(_impl_.processors_){from._impl_.processors_}
     , decltype(_impl_.drains_){from._impl_.drains_}
     , decltype(_impl_.name_){}
+    , decltype(_impl_.metadata_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1442,6 +1731,9 @@ Sample::Sample(const Sample& from)
   if (!from._internal_name().empty()) {
     _this->_impl_.name_.Set(from._internal_name(), 
       _this->GetArenaForAllocation());
+  }
+  if (from._internal_has_metadata()) {
+    _this->_impl_.metadata_ = new ::MetaData(*from._impl_.metadata_);
   }
   // @@protoc_insertion_point(copy_constructor:Sample)
 }
@@ -1455,6 +1747,7 @@ inline void Sample::SharedCtor(
     , decltype(_impl_.processors_){arena}
     , decltype(_impl_.drains_){arena}
     , decltype(_impl_.name_){}
+    , decltype(_impl_.metadata_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.name_.InitDefault();
@@ -1478,6 +1771,7 @@ inline void Sample::SharedDtor() {
   _impl_.processors_.~RepeatedPtrField();
   _impl_.drains_.~RepeatedPtrField();
   _impl_.name_.Destroy();
+  if (this != internal_default_instance()) delete _impl_.metadata_;
 }
 
 void Sample::SetCachedSize(int size) const {
@@ -1494,6 +1788,10 @@ void Sample::Clear() {
   _impl_.processors_.Clear();
   _impl_.drains_.Clear();
   _impl_.name_.ClearToEmpty();
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
+  }
+  _impl_.metadata_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1510,6 +1808,14 @@ const char* Sample::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Sample.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .MetaData metadata = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1591,6 +1897,13 @@ uint8_t* Sample::_InternalSerialize(
         1, this->_internal_name(), target);
   }
 
+  // .MetaData metadata = 2;
+  if (this->_internal_has_metadata()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::metadata(this),
+        _Internal::metadata(this).GetCachedSize(), target, stream);
+  }
+
   // repeated .Source sources = 10;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_sources_size()); i < n; i++) {
@@ -1659,6 +1972,13 @@ size_t Sample::ByteSizeLong() const {
         this->_internal_name());
   }
 
+  // .MetaData metadata = 2;
+  if (this->_internal_has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.metadata_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1682,6 +2002,10 @@ void Sample::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBU
   _this->_impl_.drains_.MergeFrom(from._impl_.drains_);
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
+  }
+  if (from._internal_has_metadata()) {
+    _this->_internal_mutable_metadata()->::MetaData::MergeFrom(
+        from._internal_metadata());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1709,16 +2033,25 @@ void Sample::InternalSwap(Sample* other) {
       &_impl_.name_, lhs_arena,
       &other->_impl_.name_, rhs_arena
   );
+  swap(_impl_.metadata_, other->_impl_.metadata_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Sample::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_sample_2eproto_getter, &descriptor_table_sample_2eproto_once,
-      file_level_metadata_sample_2eproto[4]);
+      file_level_metadata_sample_2eproto[6]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::MetaData_InfoEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::MetaData_InfoEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MetaData_InfoEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::MetaData*
+Arena::CreateMaybeMessage< ::MetaData >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MetaData >(arena);
+}
 template<> PROTOBUF_NOINLINE ::Source*
 Arena::CreateMaybeMessage< ::Source >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Source >(arena);

@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+message MetaData {
+    map<string, string> info = 1;
+}
+
 message Source {
     string name = 1;
     repeated string processors = 2;
@@ -54,6 +58,7 @@ message Drain {
 
 message Sample {
     string name = 1;
+    MetaData metadata = 2;
     repeated Source sources = 10;
     repeated Processor processors = 11;
     repeated Drain drains = 12;

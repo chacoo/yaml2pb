@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "google/protobuf/message.h"
+#include "google/protobuf/reflection.h"
 #include "google/protobuf/descriptor.h"
 #include "yaml-cpp/yaml.h"
 
@@ -103,7 +104,7 @@ namespace yaml2pb
                 }
             }
             if (!ev)
-                throw exception(field, "Enum value not found");
+                throw exception(field, "Enum value not found:" + node.as<std::string>());
             _SET_OR_ADD(SetEnum, AddEnum, ev);
             break;
         }
@@ -128,9 +129,23 @@ namespace yaml2pb
             if (!field)
                 field = ref->FindKnownExtensionByName(name);
             if (!field)
-                throw exception("unknown field " + name);
+                throw exception("unknown field '" + name + "'");
 
-            if (field->is_repeated())
+            if (field->is_map())
+            {
+                if (!value.IsMap())
+                    throw exception(field, "invalid map");
+
+                auto mf = ref->GetMutableRepeatedFieldRef<google::protobuf::Message>(&message, field);
+                for (YAML::const_iterator it_pair = value.begin(); it_pair != value.end(); it_pair++)
+                {
+                    std::unique_ptr<google::protobuf::Message> entry(google::protobuf::MessageFactory::generated_factory()->GetPrototype(field->message_type())->New(message.GetArena()));
+                    yaml2field(*entry, field->message_type()->field(0), it_pair->first);
+                    yaml2field(*entry, field->message_type()->field(1), it_pair->second);
+                    mf.Add(*entry);
+                }
+            }
+            else if (field->is_repeated())
             {
                 if (!value.IsSequence())
                     throw exception(field, "invalid array");
@@ -219,7 +234,29 @@ namespace yaml2pb
             const google::protobuf::FieldDescriptor *field = *it;
 
             const std::string &name = (field->is_extension()) ? field->full_name() : field->name();
-            if (field->is_repeated())
+            if (field->is_map())
+            {
+                size_t count = ref->FieldSize(message, field);
+                if (!count)
+                    continue;
+
+                YAML::Node map_value;
+                for (size_t j = 0; j < count; j++)
+                {
+                    YAML::Node item;
+                    const google::protobuf::Message &mf = ref->GetRepeatedMessage(message, field, j);
+                    const google::protobuf::Descriptor *df = mf.GetDescriptor();
+                    const google::protobuf::FieldDescriptor *map_key_field = df->map_key();
+                    if (map_key_field->type() != google::protobuf::FieldDescriptor::TYPE_STRING)
+                        throw exception(field, "Invalid key type");
+                    field2yaml(item, mf, df->map_value(), 0);
+                    std::string scratch;
+                    const std::string &map_name = mf.GetReflection()->GetStringReference(mf, map_key_field, &scratch);
+                    map_value[map_name] = item;
+                }
+                node[name] = map_value;
+            }
+            else if (field->is_repeated())
             {
                 size_t count = ref->FieldSize(message, field);
                 if (!count)

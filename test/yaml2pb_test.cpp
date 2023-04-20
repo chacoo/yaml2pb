@@ -6,6 +6,9 @@
 
 const char *test_yaml = "\
 name: recorder_sample\n\
+metadata:\n\
+  info:\n\
+    my_key: my_value\n\
 sources:\n\
   - name: default_source\n\
     processors:\n\
@@ -58,6 +61,9 @@ TEST(yaml2pb, sample)
     Sample sample;
     yaml2pb::yaml2pb(sample, test_yaml);
     EXPECT_TRUE(sample.name() == "recorder_sample");
+    EXPECT_TRUE(sample.has_metadata());
+    EXPECT_EQ(sample.metadata().info_size(), 1);
+    EXPECT_TRUE(sample.metadata().info().at("my_key") == "my_value");
     EXPECT_EQ(sample.sources_size(), 1);
     EXPECT_TRUE(sample.sources()[0].name() == "default_source");
     EXPECT_EQ(sample.processors_size(), 3);
@@ -68,6 +74,7 @@ TEST(pb2yaml, sample)
 {
     Sample sample;
     sample.set_name("recorder_sample");
+    (*(sample.mutable_metadata()->mutable_info()))["my_key"] = "my_value";
 
     Source *source = sample.add_sources();
     source->set_name("default_source");
