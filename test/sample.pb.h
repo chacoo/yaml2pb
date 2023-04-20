@@ -29,6 +29,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
@@ -48,6 +51,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 class Drain;
 struct DrainDefaultTypeInternal;
 extern DrainDefaultTypeInternal _Drain_default_instance_;
+class MetaData;
+struct MetaDataDefaultTypeInternal;
+extern MetaDataDefaultTypeInternal _MetaData_default_instance_;
+class MetaData_InfoEntry_DoNotUse;
+struct MetaData_InfoEntry_DoNotUseDefaultTypeInternal;
+extern MetaData_InfoEntry_DoNotUseDefaultTypeInternal _MetaData_InfoEntry_DoNotUse_default_instance_;
 class Module;
 struct ModuleDefaultTypeInternal;
 extern ModuleDefaultTypeInternal _Module_default_instance_;
@@ -62,6 +71,8 @@ struct SourceDefaultTypeInternal;
 extern SourceDefaultTypeInternal _Source_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Drain* Arena::CreateMaybeMessage<::Drain>(Arena*);
+template<> ::MetaData* Arena::CreateMaybeMessage<::MetaData>(Arena*);
+template<> ::MetaData_InfoEntry_DoNotUse* Arena::CreateMaybeMessage<::MetaData_InfoEntry_DoNotUse>(Arena*);
 template<> ::Module* Arena::CreateMaybeMessage<::Module>(Arena*);
 template<> ::Processor* Arena::CreateMaybeMessage<::Processor>(Arena*);
 template<> ::Sample* Arena::CreateMaybeMessage<::Sample>(Arena*);
@@ -158,6 +169,197 @@ inline bool Drain_DrainType_Parse(
 }
 // ===================================================================
 
+class MetaData_InfoEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<MetaData_InfoEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<MetaData_InfoEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  MetaData_InfoEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR MetaData_InfoEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit MetaData_InfoEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const MetaData_InfoEntry_DoNotUse& other);
+  static const MetaData_InfoEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const MetaData_InfoEntry_DoNotUse*>(&_MetaData_InfoEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "MetaData.InfoEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "MetaData.InfoEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_sample_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class MetaData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MetaData) */ {
+ public:
+  inline MetaData() : MetaData(nullptr) {}
+  ~MetaData() override;
+  explicit PROTOBUF_CONSTEXPR MetaData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MetaData(const MetaData& from);
+  MetaData(MetaData&& from) noexcept
+    : MetaData() {
+    *this = ::std::move(from);
+  }
+
+  inline MetaData& operator=(const MetaData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MetaData& operator=(MetaData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MetaData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MetaData* internal_default_instance() {
+    return reinterpret_cast<const MetaData*>(
+               &_MetaData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(MetaData& a, MetaData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MetaData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MetaData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MetaData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MetaData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MetaData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const MetaData& from) {
+    MetaData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MetaData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "MetaData";
+  }
+  protected:
+  explicit MetaData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInfoFieldNumber = 1,
+  };
+  // map<string, string> info = 1;
+  int info_size() const;
+  private:
+  int _internal_info_size() const;
+  public:
+  void clear_info();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_info() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_info();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      info() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_info();
+
+  // @@protoc_insertion_point(class_scope:MetaData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        MetaData_InfoEntry_DoNotUse,
+        std::string, std::string,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> info_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_sample_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Source final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Source) */ {
  public:
@@ -206,7 +408,7 @@ class Source final :
                &_Source_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(Source& a, Source& b) {
     a.Swap(&b);
@@ -385,7 +587,7 @@ class Module final :
                &_Module_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(Module& a, Module& b) {
     a.Swap(&b);
@@ -649,7 +851,7 @@ class Processor final :
                &_Processor_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(Processor& a, Processor& b) {
     a.Swap(&b);
@@ -867,7 +1069,7 @@ class Drain final :
                &_Drain_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(Drain& a, Drain& b) {
     a.Swap(&b);
@@ -1089,7 +1291,7 @@ class Sample final :
                &_Sample_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(Sample& a, Sample& b) {
     a.Swap(&b);
@@ -1166,6 +1368,7 @@ class Sample final :
     kProcessorsFieldNumber = 11,
     kDrainsFieldNumber = 12,
     kNameFieldNumber = 1,
+    kMetadataFieldNumber = 2,
   };
   // repeated .Source sources = 10;
   int sources_size() const;
@@ -1235,6 +1438,24 @@ class Sample final :
   std::string* _internal_mutable_name();
   public:
 
+  // .MetaData metadata = 2;
+  bool has_metadata() const;
+  private:
+  bool _internal_has_metadata() const;
+  public:
+  void clear_metadata();
+  const ::MetaData& metadata() const;
+  PROTOBUF_NODISCARD ::MetaData* release_metadata();
+  ::MetaData* mutable_metadata();
+  void set_allocated_metadata(::MetaData* metadata);
+  private:
+  const ::MetaData& _internal_metadata() const;
+  ::MetaData* _internal_mutable_metadata();
+  public:
+  void unsafe_arena_set_allocated_metadata(
+      ::MetaData* metadata);
+  ::MetaData* unsafe_arena_release_metadata();
+
   // @@protoc_insertion_point(class_scope:Sample)
  private:
   class _Internal;
@@ -1247,6 +1468,7 @@ class Sample final :
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Processor > processors_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Drain > drains_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::MetaData* metadata_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1261,6 +1483,41 @@ class Sample final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// MetaData
+
+// map<string, string> info = 1;
+inline int MetaData::_internal_info_size() const {
+  return _impl_.info_.size();
+}
+inline int MetaData::info_size() const {
+  return _internal_info_size();
+}
+inline void MetaData::clear_info() {
+  _impl_.info_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+MetaData::_internal_info() const {
+  return _impl_.info_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+MetaData::info() const {
+  // @@protoc_insertion_point(field_map:MetaData.info)
+  return _internal_info();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+MetaData::_internal_mutable_info() {
+  return _impl_.info_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+MetaData::mutable_info() {
+  // @@protoc_insertion_point(field_mutable_map:MetaData.info)
+  return _internal_mutable_info();
+}
+
+// -------------------------------------------------------------------
+
 // Source
 
 // string name = 1;
@@ -1849,6 +2106,96 @@ inline void Sample::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Sample.name)
 }
 
+// .MetaData metadata = 2;
+inline bool Sample::_internal_has_metadata() const {
+  return this != internal_default_instance() && _impl_.metadata_ != nullptr;
+}
+inline bool Sample::has_metadata() const {
+  return _internal_has_metadata();
+}
+inline void Sample::clear_metadata() {
+  if (GetArenaForAllocation() == nullptr && _impl_.metadata_ != nullptr) {
+    delete _impl_.metadata_;
+  }
+  _impl_.metadata_ = nullptr;
+}
+inline const ::MetaData& Sample::_internal_metadata() const {
+  const ::MetaData* p = _impl_.metadata_;
+  return p != nullptr ? *p : reinterpret_cast<const ::MetaData&>(
+      ::_MetaData_default_instance_);
+}
+inline const ::MetaData& Sample::metadata() const {
+  // @@protoc_insertion_point(field_get:Sample.metadata)
+  return _internal_metadata();
+}
+inline void Sample::unsafe_arena_set_allocated_metadata(
+    ::MetaData* metadata) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.metadata_);
+  }
+  _impl_.metadata_ = metadata;
+  if (metadata) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Sample.metadata)
+}
+inline ::MetaData* Sample::release_metadata() {
+  
+  ::MetaData* temp = _impl_.metadata_;
+  _impl_.metadata_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::MetaData* Sample::unsafe_arena_release_metadata() {
+  // @@protoc_insertion_point(field_release:Sample.metadata)
+  
+  ::MetaData* temp = _impl_.metadata_;
+  _impl_.metadata_ = nullptr;
+  return temp;
+}
+inline ::MetaData* Sample::_internal_mutable_metadata() {
+  
+  if (_impl_.metadata_ == nullptr) {
+    auto* p = CreateMaybeMessage<::MetaData>(GetArenaForAllocation());
+    _impl_.metadata_ = p;
+  }
+  return _impl_.metadata_;
+}
+inline ::MetaData* Sample::mutable_metadata() {
+  ::MetaData* _msg = _internal_mutable_metadata();
+  // @@protoc_insertion_point(field_mutable:Sample.metadata)
+  return _msg;
+}
+inline void Sample::set_allocated_metadata(::MetaData* metadata) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.metadata_;
+  }
+  if (metadata) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(metadata);
+    if (message_arena != submessage_arena) {
+      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, metadata, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.metadata_ = metadata;
+  // @@protoc_insertion_point(field_set_allocated:Sample.metadata)
+}
+
 // repeated .Source sources = 10;
 inline int Sample::_internal_sources_size() const {
   return _impl_.sources_.size();
@@ -1972,6 +2319,10 @@ Sample::drains() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
