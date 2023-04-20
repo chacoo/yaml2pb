@@ -74,7 +74,7 @@ TEST(pb2yaml, sample)
 {
     Sample sample;
     sample.set_name("recorder_sample");
-    sample.mutable_metadata()->mutable_info()->insert(std::make_pair("my_key", "my_value"));
+    (*(sample.mutable_metadata()->mutable_info()))["my_key"] = "my_value";
 
     Source *source = sample.add_sources();
     source->set_name("default_source");
