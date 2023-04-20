@@ -74,10 +74,10 @@ TEST(pb2yaml, sample)
 {
     Sample sample;
     sample.set_name("recorder_sample");
+    sample.mutable_metadata()->mutable_info()->insert(std::make_pair("my_key", "my_value"));
 
     Source *source = sample.add_sources();
     source->set_name("default_source");
-    source->mutable_metadata()->mutable_info()->insert(std::make_pair("my_key", "my_value"));
     source->add_processors("audio_mixer_for_wav");
     source->add_processors("audio_mixer_for_mp4");
     source->add_processors("video_mixer_for_mp4");
